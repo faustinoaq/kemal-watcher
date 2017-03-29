@@ -14,12 +14,9 @@ private def watcher(files)
 end
 
 module Kemal
-
-  SOCKETS = [] of HTTP::WebSocket
-
+  FILES         = [] of String
+  SOCKETS       = [] of HTTP::WebSocket
   WEBSOCKETPATH = SecureRandom.hex(4)
-
-  FILES = [] of String
 
   # Handle change when event.on_change and
   # send reload message to all clients
