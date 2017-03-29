@@ -29,10 +29,10 @@ module Kemal
     end
   end
 
-  # Watch files in a concurrent way
+  # Watch files and add WatcherHandler to Kemal handlers
   def self.watch(files)
     watcher(files)
-    add_handler WatcherHandler.new
+    add_handler(WatcherHandler.new)
   end
 
   # Start WebSocket server
