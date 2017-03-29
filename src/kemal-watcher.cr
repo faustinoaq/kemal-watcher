@@ -20,7 +20,7 @@ module Kemal
   # Watch files in a concurrent way
   def self.watch(files)
     spawn do
-      watch files do |event|
+      Watcher.watch files do |event|
         event.on_change do
           handle_change
         end
