@@ -11,7 +11,6 @@ private def watcher(files)
       end
     end
   end
-  add_handler WatcherHandler.new
 end
 
 module Kemal
@@ -33,6 +32,7 @@ module Kemal
   # Watch files in a concurrent way
   def self.watch(files)
     watcher(files)
+    add_handler WatcherHandler.new
   end
 
   # Start WebSocket server
