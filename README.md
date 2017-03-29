@@ -18,30 +18,19 @@ dependencies:
 require "kemal-watcher"
 
 get "/" do
-  render "src/views/index.ecr"
+  File.read "src/views/index.html"
 end
 
-Kemal.watch [
-  "public/assets/*.js"
-]
-
-Kemal.run
-```
-
-Add `Kemal.watch [...]` to your Kemal app to watch files.
-
-Also you can use inside `Kemal.run` block:
-
-```crystal
 files = {
   "public/assets/*.js",
   "src/views/*.html",
 }
 
-Kemal.run do
-  Kemal.watch files
-end
+Kemal.watch files
+Kemal.run
 ```
+
+Add `Kemal.watch [...]` to your Kemal app to watch files.
 
 # How does it works?
 
