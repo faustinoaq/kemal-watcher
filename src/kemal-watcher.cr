@@ -1,5 +1,6 @@
 require "./kemal-watcher/*"
 require "secure_random"
+require "watcher"
 
 module Kemal
 
