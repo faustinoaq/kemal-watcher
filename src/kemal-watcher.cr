@@ -24,7 +24,7 @@ module Kemal
 
   # Handle change when event.on_change and
   # send reload message to all clients
-  def handle_change
+  def self.handle_change
     SOCKETS.each do |socket|
       socket.send "reload"
     end
