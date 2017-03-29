@@ -7,13 +7,12 @@ private def watcher(files)
   spawn do
     Watcher.watch files do |event|
       event.on_change do
-        handle_change
+        Kemal.handle_change
       end
     end
   end
   add_handler WatcherHandler.new
 end
-
 
 module Kemal
 
