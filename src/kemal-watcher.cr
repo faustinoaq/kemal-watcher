@@ -8,7 +8,7 @@ private def watcher(files)
   spawn do
     Watcher.watch files do |event|
       event.on_change do |files|
-        files.each do |file|
+        files.each do |file, time|
           puts "  watching file: #{file}"
         end
         Kemal.handle_change
