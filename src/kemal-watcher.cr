@@ -27,7 +27,7 @@ module Kemal
 
   # Watch files and add WatcherHandler to Kemal handlers
   def self.watch(files)
-    if Kemal.config.env == "production"
+    if Kemal.config.env == "production" || ENV["KEMAL_ENV"] == "production"
       puts "Kemal.watch is intended for use in a development environment."
     end
     watcher files
