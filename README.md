@@ -44,6 +44,10 @@ Add `Kemal.watch [...]` to your Kemal app to watch files.
 4. Push to the branch (git push origin my-new-feature)
 5. Create a new Pull Request
 
+## Disclaimer
+
+`Kemal.watch` is intended for use in a development environment.
+
 ## Contributors
 
 - [faustinoaq](https://github.com/faustinoaq) Faustino Aguilar - creator, maintainer
