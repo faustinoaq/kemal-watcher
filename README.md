@@ -1,5 +1,7 @@
 # kemal-watcher
 
+[![Build Status](https://travis-ci.org/faustinoaq/kemal-watcher.svg?branch=master)](https://travis-ci.org/faustinoaq/kemal-watcher)
+
 [Kemal](https://github.com/kemalcr/kemal) plugin to watch files like client stuff.
 
 ## Installation
