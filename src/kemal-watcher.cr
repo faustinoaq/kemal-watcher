@@ -25,7 +25,7 @@ module Kemal
     end
   end
 
-  {% if Kemal.config.env == "production" %}
+  {% if env("KEMAL_ENV") == "production" %}
     def self.watch(files)
       puts "kemal-watcher doesn't work in production environments"
     end
