@@ -35,7 +35,7 @@ module Kemal
       puts "Kemal.watch is intended for use in a development environment."
     end
     watcher files
-    add_handler WatcherHandler.new
+    # add_handler WatcherHandler.new
   end
 
   # Start WebSocket server
@@ -43,6 +43,44 @@ module Kemal
     SOCKETS << socket
     socket.on_close do
       SOCKETS.delete socket
+    end
+  end
+
+  # Instead of Kemal::Handler I'm using after_get
+  # to check content_type == "text/html"
+  # However, http://kemalcr.com/docs/filters/ says:
+  # Important note: This should not be used by
+  # plugins/addons, instead they should do all their
+  # work in their own middleware.
+  # In future releases I could improve the WatcherHandler
+  # but for now it works.
+  after_get do |env|
+    if env.response.headers["Content-Type"] == "text/html"
+      env.response.print <<-HTML
+      \n<!-- Code injected by kemal-watcher -->
+      <script type="text/javascript">
+        // <![CDATA[  <-- For SVG support
+        if ('WebSocket' in window) {
+          (() => {
+            var ws = new WebSocket("ws://" + location.host + "/#{WEBSOCKETPATH}");
+            ws.onopen = () => {
+              console.log("Connected to kemal-watcher");
+            };
+            ws.onmessage = (msg) => {
+              if (msg.data == "reload") {
+                window.location.reload();
+              }
+            };
+            ws.onclose = () => {
+              setTimeout(() => {
+                window.location.reload();
+              }, 2000);
+            };
+          })();
+        }
+        // ]]>
+      </script>\n
+      HTML
     end
   end
 end
