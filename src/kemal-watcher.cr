@@ -25,23 +25,20 @@ module Kemal
     end
   end
 
-  {% if env("KEMAL_ENV") == "production" %}
-    def self.watch(files)
-      puts "kemal-watcher doesn't work in production environments"
+  # Watch files and add WatcherHandler to Kemal handlers
+  def self.watch(files)
+    if Kemal.config.env == "production"
+      puts "Kemal.watch is intended for use in a development environment."
     end
-  {% else %}
-    # Watch files and add WatcherHandler to Kemal handlers
-    def self.watch(files)
-        watcher files
-        add_handler WatcherHandler.new
-    end
+    watcher files
+    add_handler WatcherHandler.new
+  end
 
-    # Start WebSocket server
-    ws "/" + WEBSOCKETPATH do |socket|
-      SOCKETS << socket
-      socket.on_close do
-        SOCKETS.delete socket
-      end
+  # Start WebSocket server
+  ws "/" + WEBSOCKETPATH do |socket|
+    SOCKETS << socket
+    socket.on_close do
+      SOCKETS.delete socket
     end
-  {% end %}
+  end
 end
