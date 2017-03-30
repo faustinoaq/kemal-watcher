@@ -15,6 +15,7 @@ dependencies:
 ## Usage
 
 ```crystal
+require "kemal"
 require "kemal-watcher"
 
 get "/" do
