@@ -10,6 +10,6 @@ dependencies:
     version: 0.18.3
   watcher:
     github: faustinoaq/watcher
-    branch: master
+    version: 0.1.5
 
 license: MIT

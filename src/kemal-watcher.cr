@@ -4,9 +4,13 @@ require "watcher"
 
 # Uses Watcher.watch shard to guard files
 private def watcher(files)
+  puts "  Your KemalBot is vigilant. beep-boop..."
   spawn do
     Watcher.watch files do |event|
-      event.on_change do
+      event.on_change do |files|
+        files.each do |file|
+          puts "  watching file: #{file}"
+        end
         Kemal.handle_change
       end
     end
