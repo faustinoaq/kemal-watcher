@@ -7,7 +7,6 @@ authors:
 dependencies:
   kemal:
     github: kemalcr/kemal
-    version: 0.18.3
   watcher:
     github: faustinoaq/watcher
     version: 0.1.5
