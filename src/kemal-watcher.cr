@@ -4,15 +4,14 @@ require "secure_random"
 
 require "./kemal-watcher/*"
 
-
 module Kemal
   SOCKETS       = [] of HTTP::WebSocket
   WEBSOCKETPATH = SecureRandom.hex 4
 
   # Uses Watcher.watch shard to guard files
   def self.watcher(files)
-    puts "  Your KemalBot is vigilant. beep-boop..."
     spawn do
+      puts "  Your KemalBot is vigilant. beep-boop..."
       watch files do |event|
         event.on_change do |files|
           files.each do |file, time|
@@ -21,14 +20,6 @@ module Kemal
           handle_change
         end
       end
-    end
-  end
-
-  # Handle change when event.on_change and
-  # send reload message to all clients
-  def self.handle_change
-    SOCKETS.each do |socket|
-      socket.send "reload"
     end
   end
 

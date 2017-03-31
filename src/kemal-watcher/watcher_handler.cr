@@ -8,6 +8,14 @@ module Kemal
   #   end
   # end
 
+  # Handle change when event.on_change and
+  # send reload message to all clients
+  def self.handle_change
+    SOCKETS.each do |socket|
+      socket.send "reload"
+    end
+  end
+
   # Instead of Kemal::Handler I'm using a filter handler
   # to check content_type == "text/html"
   # However, http://kemalcr.com/docs/filters/ says:
