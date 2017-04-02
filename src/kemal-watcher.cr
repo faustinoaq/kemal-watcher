@@ -9,7 +9,7 @@ module Kemal
   WEBSOCKETPATH = SecureRandom.hex 4
 
   # Uses Watcher.watch shard to guard files
-  def self.watcher(files)
+  private def self.watcher(files)
     spawn do
       puts "  Your KemalBot is vigilant. beep-boop..."
       watch files do |event|
@@ -35,7 +35,7 @@ module Kemal
   end
 
   # Start WebSocket server
-  def self.websocket_server
+  private def self.websocket_server
     ws "/" + WEBSOCKETPATH do |socket|
       SOCKETS << socket
       socket.on_close do

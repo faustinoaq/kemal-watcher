@@ -10,7 +10,7 @@ module Kemal
 
   # Handle change when event.on_change and
   # send reload message to all clients
-  def self.handle_change
+  private def self.handle_change
     SOCKETS.each do |socket|
       socket.send "reload"
     end
@@ -24,7 +24,7 @@ module Kemal
   # work in their own middleware.
   # In future releases I could improve the WatcherHandler
   # but for now it works.
-  def self.filter_handler
+  private def self.filter_handler
     after_get do |env|
       if env.response.headers["Content-Type"] == "text/html"
         env.response.print <<-HTML
