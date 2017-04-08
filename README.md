@@ -16,6 +16,8 @@ dependencies:
 
 ## Usage
 
+Add `Kemal.watch` to your Kemal app to watch files.
+
 ```crystal
 require "kemal"
 require "kemal-watcher"
@@ -24,16 +26,14 @@ get "/" do
   File.read "src/views/index.html"
 end
 
-files = {
-  "public/assets/*.js",
-  "src/views/*.html",
-}
+files = [
+  "public/*.js",
+  "public/*.html"
+]
 
-Kemal.watch files
+Kemal.watch(files)
 Kemal.run
 ```
-
-Add `Kemal.watch [...]` to your Kemal app to watch files.
 
 # How does it works?
 
