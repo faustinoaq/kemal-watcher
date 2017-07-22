@@ -9,6 +9,6 @@ dependencies:
     github: kemalcr/kemal
   watcher:
     github: faustinoaq/watcher
-    version: 0.1.9
+    version: 0.2.0
 
 license: MIT
