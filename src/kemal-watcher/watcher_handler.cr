@@ -30,7 +30,6 @@ module Kemal
         env.response.print <<-HTML
         \n<!-- Code injected by kemal-watcher -->
         <script type="text/javascript">
-          // <![CDATA[  <-- For SVG support
           if ('WebSocket' in window) {
             (() => {
               var ws = new WebSocket("ws://" + location.host + "/#{WEBSOCKETPATH}");
@@ -49,7 +48,6 @@ module Kemal
               };
             })();
           }
-          // ]]>
         </script>\n
         HTML
       end
