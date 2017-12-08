@@ -1,12 +1,11 @@
 require "kemal"
 require "watcher"
-require "secure_random"
 
 require "./kemal-watcher/*"
 
 module Kemal
   SOCKETS       = [] of HTTP::WebSocket
-  WEBSOCKETPATH = SecureRandom.hex 4
+  WEBSOCKETPATH = rand(0x10000000).to_s(36)
 
   # Uses Watcher.watch shard to guard files
   private def self.watcher(files)
