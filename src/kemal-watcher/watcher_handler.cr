@@ -10,8 +10,8 @@ module Kemal
         if ('WebSocket' in window) {
           (() => {
             var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-            var address = protocol + window.location.host + window.location.pathname + `/#{WEBSOCKETPATH}`;
-            var socket = new WebSocket(address);
+            var address = protocol + window.location.host + window.location.pathname + `#{WEBSOCKETPATH}`;
+            var ws = new WebSocket(address);
             ws.onopen = () => {
               console.log("Connected to kemal-watcher");
             };
