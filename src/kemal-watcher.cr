@@ -1,12 +1,11 @@
 require "kemal"
 require "watcher"
-require "secure_random"
 
 require "./kemal-watcher/*"
 
 module Kemal
   SOCKETS       = [] of HTTP::WebSocket
-  WEBSOCKETPATH = SecureRandom.hex 4
+  WEBSOCKETPATH = rand(0x10000000).to_s(36)
 
   # Uses Watcher.watch shard to guard files
   private def self.watcher(files)
@@ -28,9 +27,10 @@ module Kemal
     if Kemal.config.env == "production" || ENV["KEMAL_ENV"]? == "production"
       puts "Kemal.watch is intended for use in a development environment."
     end
-    # add_handler WatcherHandler.new
     websocket_server
-    filter_handler
+    Kemal::FilterHandler::INSTANCE.after("GET", "*") do |context|
+      WatcherHandler.new.call(context)
+    end
     watcher files
   end
 
