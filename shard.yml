@@ -1,5 +1,5 @@
 name: kemal-watcher
-version: 0.2.3
+version: 0.3.0
 
 authors:
   - Faustino Aguilar <faustinoaq@gmail.com>
@@ -7,8 +7,9 @@ authors:
 dependencies:
   kemal:
     github: kemalcr/kemal
+    version: ~> 0.21.0
   watcher:
     github: faustinoaq/watcher
-    version: 0.2.0
+    version: ~> 0.2.2
 
 license: MIT
