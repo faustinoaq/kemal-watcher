@@ -7,7 +7,7 @@ authors:
 dependencies:
   kemal:
     github: kemalcr/kemal
-    version: ~> 0.21.0
+    branch: master
   watcher:
     github: faustinoaq/watcher
     version: ~> 0.2.2
