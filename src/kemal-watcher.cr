@@ -13,7 +13,7 @@ module Kemal
       puts "  Your KemalBot is vigilant. beep-boop..."
       watch files do |event|
         event.on_change do |files|
-          files.each do |file, time|
+          files.each do |file, data|
             puts "  watching file: #{file}"
           end
           handle_change
